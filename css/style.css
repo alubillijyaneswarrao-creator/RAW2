@@ -1,0 +1,935 @@
+/* --- Root Variables & Base Styles --- */
+:root {
+    --primary-red: #e74c3c;
+    --hover-red: #c0392b;
+    --dark-bg: #121212;
+    --light-text: #ecf0f1;
+    --border-color: #444;
+    --box-bg: #1e1e1e;
+    --box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    --glow-shadow: 0 0 20px rgba(231, 76, 60, 0.4);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    margin: 0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* General container for content boxes */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Main Navigation Bar --- */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Reduce the first value (top and bottom padding) */
+    padding: 5px 40px; 
+    background-color: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.nav-logo-img {
+    width: 70px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+.nav-logo-img:hover {
+    transform: scale(1.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary-red);
+    transform: translateY(-2px);
+}
+.six{
+    padding:10px;
+    margin:5px;
+   
+}
+.y{
+    color:var(--primary-red)
+}
+.mix{
+    padding: 1opx;
+    margin: 5px;
+}
+.nav-button {
+    background-color: var(--primary-red);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    color: var(--light-text) !important;
+    text-decoration: none;
+    
+}
+.box{
+    height:20px;
+    width:100px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:1.5em;
+    font-weight:700;
+    padding:10px;
+    margin:5px;
+    border-radius:5px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    text-align:center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.nav-button:hover {
+    background-color: var(--hover-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--light-text);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Hero Section (Home Page) --- */
+.hero {
+    height: 100vh;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background: url('../assets/images/hero-background.jpg') no-repeat center center/cover;
+    animation: fadeInUp 1s ease-out forwards;
+    padding-top: 80px; 
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Buttons --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+.green{
+    display: inline-block;
+    background:white;
+    color:var(--primary-red);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+.green:{
+     background-color: var(--hover-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.hello {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: #fff;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+.cta-button:hover {
+    background-color: var(--hover-red);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Content Sections --- */
+.content-section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.page-header {
+    padding-top: 150px; 
+}
+
+.content-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--primary-red);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.section-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: var(--box-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow);
+}
+.section-content p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+/* --- Sponsor Section --- */
+.sponsors-section {
+    padding: 40px 5%;
+    background-color: var(--box-bg);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sponsors-section h2 {
+    font-size: 1.8em;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+}
+
+.sponsor-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.sponsor-logos img {
+    max-height: 60px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.sponsor-logos img:hover {
+    transform: scale(1.1);
+}
+
+/* --- About Section --- */
+.about-layout {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.about-text {
+    flex: 1.5;
+}
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-image img {
+    max-width: 100%;
+    border-radius: 12px;
+}
+
+/* --- Contact Section --- */
+#contact-section .section-content {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--primary-red);
+    transform: translateY(-5px);
+}
+
+.social-icon .icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.social-icon span {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+/* --- Gallery & Grids --- */
+.gallery-grid, .guest-grid, .team-grid {
+    display: grid;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+}
+
+.gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.guest-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+.team-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* --- Cards (Guest & Team) --- */
+.guest-card, .team-member-card {
+    background-color: var(--box-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+.team-member-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.guest-card:hover, .team-member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    border-color: var(--primary-red);
+}
+
+.guest-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+.guest-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.team-member-card {
+    padding: 25px;
+    position: relative;
+}
+
+.team-member-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-red);
+    margin-bottom: 20px;
+    box-shadow: var(--glow-shadow);
+}
+
+.guest-info h3, .team-member-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.6em;
+    color: var(--light-text);
+}
+
+.guest-info p, .team-member-card p {
+    font-size: 1em;
+    color: var(--primary-red);
+    margin: 0;
+}
+.team-member-card .description {
+    font-size: 0.9em;
+    color: #bbb;
+    margin-top: 15px;
+    line-height: 1.6;
+    min-height: 60px;
+}
+
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #ccc;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+    margin-top: 10px;
+}
+
+.instagram-link:hover {
+    color: var(--primary-red);
+}
+
+.instagram-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.social-icon-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 8px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+.team-member-card:hover .social-icon-wrapper {
+    opacity: 1;
+    transform: scale(1);
+}
+.social-icon-wrapper svg {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    display: block;
+}
+
+
+/* --- Rules Page --- */
+.rules-page-background {
+    background: linear-gradient(rgba(18, 18, 18, 0.95), rgba(18, 18, 18, 0.95)), url('../assets/images/rules-background.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    border-radius: 12px;
+}
+
+.rules-list h3 {
+    margin-top: 30px;
+    color: var(--primary-red);
+    font-size: 1.8em;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+.rules-list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.rules-list ul li {
+    background-color: #252525;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.rules-list ul li:hover {
+    background-color: #303030;
+    border-color: var(--primary-red);
+}
+
+/* --- Auth & Dashboard Pages --- */
+.login-page-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../assets/images/login-background.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+}
+
+.form-box, .content-box {
+    background-color: var(--box-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    animation: fadeInUp 0.6s ease-out forwards;
+    width: 100%;
+}
+
+.auth-container {
+    max-width: 450px;
+    width: 100%;
+}
+
+.content-box {
+    max-width: 600px;
+    margin: 150px auto 50px;
+}
+
+.form-box h1, .content-box h2 {
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.animated-textbox, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 18px;
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--light-text);
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.animated-textbox:focus, textarea:focus {
+    outline: none;
+    box-shadow: var(--glow-shadow);
+    border-color: var(--primary-red);
+}
+
+form button {
+    width: 100%;
+    padding: 14px;
+    background-image: linear-gradient(to right, var(--primary-red), var(--hover-red));
+    border: none;
+    border-radius: 8px;
+    color: var(--light-text);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+form p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* --- Registration Form Specific --- */
+.registration-form {
+    max-width: 900px;
+    margin: 150px auto 50px auto;
+}
+
+.registration-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.form-column { flex: 1; }
+.payment-column {
+    flex: 1;
+    background-color: #252525;
+    border-radius: 8px;
+    padding: 25px;
+    border: 1px solid var(--border-color);
+}
+
+.qr-code-img {
+    display: block;
+    width: 60%;
+    max-width: 200px;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+    background-color: white;
+    padding: 10px;
+}
+
+.file-upload-wrapper {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.file-upload-wrapper:hover {
+    background-color: #2c2c2c;
+    border-color: var(--primary-red);
+}
+.file-upload-wrapper input[type="file"] { display: none; }
+.file-upload-label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.file-upload-label svg { color: var(--primary-red); width: 32px; height: 32px; }
+.file-name { font-size: 0.8em; color: #999; margin-top: 10px; display: block; }
+.full-width-actions { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+.checkbox-container { display: flex; align-items: flex-start; margin-bottom: 15px; }
+.checkbox-container input { margin-right: 12px; accent-color: var(--primary-red); }
+
+/* --- Footer --- */
+.site-footer {
+    text-align: center;
+    padding: 40px 5%;
+    background-color: var(--box-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ========================================= */
+/* --- RESPONSIVE STYLES --- */
+/* ========================================= */
+
+@media (max-width: 992px) {
+    .hero-content h1 { font-size: 3em; }
+    .content-section h2 { font-size: 2.2em; }
+    .about-layout { flex-direction: column; }
+    .nav-links { gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    /* Hamburger Menu Activation */
+    .menu-toggle { display: flex; }
+    .main-nav { padding: 15px 20px; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px; /* Height of the navbar */
+        left: 0;
+        background-color: var(--box-bg);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+    .nav-button {
+        width: 0%;
+    }
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* General Layout */
+    .hero { height: 70vh; }
+    .hero-content h1 { font-size: 2.5em; }
+    .page-header { padding-top: 120px; }
+    .content-section { padding: 60px 5%; }
+    .registration-layout { flex-direction: column; }
+    .content-box, .registration-form {
+        margin-top: 120px;
+        padding: 25px;
+    }
+}
+
+/* Custom Font */
+@font-face {
+  font-family: 'Hoshiko Satsuki';
+  src: url('../assets/fonts/Hoshiko Satsuki.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+.satsuki {
+  font-family: 'Hoshiko Satsuki', cursive;
+}
+.dashboard-image {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    animation: fadeInUp 1s ease-out forwards;
+    /* Flexbox styles to center the content */
+    display: flex;
+    flex-direction: column;
+}
+
+/* New rule to make the container fill space and center its content */
+.dashboard-image .container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-image .status-box {
+    background-color: rgba(30, 30, 30, 0.85);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+#logout-button {
+    background-color: var(--primary-red); /* Uses your theme's main red color */
+    color: var(--light-text);             /* Uses your theme's light text color */
+    border: none;                         /* Removes the default browser border */
+    padding: 10px 25px;                   /* Gives the button some comfortable spacing */
+    border-radius: 8px;                   /* Rounds the corners */
+    font-size: 16px;                      /* Sets a clear, readable font size */
+    font-weight: 500;
+    font-family: 'Oswald', sans-serif;    /* Matches the professional font used elsewhere */
+    cursor: pointer;                      /* Changes the cursor to a hand on hover */
+    transition: all 0.3s ease;            /* Creates a smooth transition for hover effects */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);/* Adds a subtle shadow for depth */
+}
+
+/* This style applies when you hover your mouse over the button */
+#logout-button:hover {
+    background-color: var(--hover-red);  /* Darkens the button slightly */
+    transform: translateY(-2px);         /* Lifts the button up a little */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);/* Makes the shadow more pronounced */
+}
+/* --- Styling for the clickable venue link --- */
+/* --- Styling for the clickable venue link --- */
+/* --- Styling for the clickable venue link & icons --- */
+.event-detail-link {
+    text-decoration: none; /* Removes the default underline from the link */
+    color: inherit; /* Ensures the text color matches the other details */
+    transition: background-color 0.3s ease; /* Smoother transition for the background only */
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: -5px -10px; /* Offsets padding to maintain alignment */
+}
+
+.event-detail-link:hover {
+    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
+    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
+}
+
+/* This new rule specifically targets the icons inside the event details */
+.event-detail .icon {
+    width: 22px;  /* Sets a specific, smaller size */
+    height: 22px; /* Sets a specific, smaller size */
+    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
+}
+
+/* --- Styling for the clickable venue link & icons --- */
+.event-detail-link {
+    text-decoration: none; /* Removes the default underline from the link */
+    color: inherit; /* Ensures the text color matches the other details */
+    transition: background-color 0.3s ease; /* Smoother transition for the background only */
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: -5px -10px; /* Offsets padding to maintain alignment */
+}
+
+.event-detail-link:hover {
+    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
+    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
+}
+
+/* This new rule specifically targets the icons inside the event details */
+.event-detail .icon {
+    width: 22px;  /* Sets a specific, smaller size */
+    height: 22px; /* Sets a specific, smaller size */
+    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
+}
+
+/* --- Global Page Transition Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Apply fade-in to the body by default */
+body {
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+/* This class will be added by JavaScript to trigger the fade-out */
+body.fade-out {
+    animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+/* --- Styling for the clickable venue link & icons --- */
+.event-detail-link {
+    text-decoration: none; /* Removes the default underline from the link */
+    color: inherit; /* Ensures the text color matches the other details */
+    transition: background-color 0.3s ease; /* Smoother transition for the background only */
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: -5px -10px; /* Offsets padding to maintain alignment */
+}
+
+.event-detail-link:hover {
+    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
+    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
+}
+
+/* This new rule specifically targets the icons inside the event details */
+.event-detail .icon {
+    width: 22px;  /* Sets a specific, smaller size */
+    height: 22px; /* Sets a specific, smaller size */
+    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
+}
+
+/* --- Global Page Transition Animations --- */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(40px); /* End slightly lower */
+    }
+}
+
+/* Apply the slide-in animation to the body by default */
+body {
+    animation: slideInUp 0.5s ease-out forwards;
+}
+
+/* This class will be added by JavaScript to trigger the slide-out */
+body.page-exit {
+    animation: slideOutDown 0.5s ease-out forwards;
+}
+
+.lika{
+    width:500px;
+}
