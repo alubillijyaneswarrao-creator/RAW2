@@ -13,7 +13,66 @@
 html {
     scroll-behavior: smooth;
 }
+/* --- Mobile Menu Styles --- */
 
+/* Style for the hamburger menu icon itself */
+.menu-toggle {
+    display: none; /* Hidden by default, shown in media query */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: #333; /* Or whatever color you prefer */
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Responsive Breakpoint --- */
+/* This is where the layout changes from desktop to mobile */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hide the links by default on mobile */
+        position: absolute;
+        top: 60px; /* Position below the navbar */
+        left: 0;
+        background-color: #fff; /* Give it a background */
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex; /* Show the menu when it has the 'active' class */
+    }
+
+    .nav-links li {
+        padding: 15px 0;
+    }
+
+    .nav-button {
+        display: block;
+        margin: 15px auto;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show the hamburger icon on mobile */
+    }
+
+    /* Optional: Animate hamburger to 'X' */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-7px, -8px);
+    }
+}
 body {
     font-family: 'Oswald', sans-serif;
     background-color: var(--dark-bg);
@@ -958,3 +1017,4 @@ body.page-exit {
     margin-bottom: 0;
   }
 }
+
