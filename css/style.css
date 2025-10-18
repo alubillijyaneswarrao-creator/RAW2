@@ -13,73 +13,20 @@
 html {
     scroll-behavior: smooth;
 }
-/* --- Mobile Menu Styles --- */
 
-/* Style for the hamburger menu icon itself */
-.menu-toggle {
-    display: none; /* Hidden by default, shown in media query */
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.menu-toggle .bar {
-    height: 3px;
-    width: 25px;
-    background-color: #333; /* Or whatever color you prefer */
-    margin: 4px 0;
-    transition: all 0.3s ease-in-out;
-}
-
-/* --- Responsive Breakpoint --- */
-/* This is where the layout changes from desktop to mobile */
-@media screen and (max-width: 768px) {
-    .nav-links {
-        display: none; /* Hide the links by default on mobile */
-        position: absolute;
-        top: 60px; /* Position below the navbar */
-        left: 0;
-        background-color: #fff; /* Give it a background */
-        width: 100%;
-        flex-direction: column;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .nav-links.active {
-        display: flex; /* Show the menu when it has the 'active' class */
-    }
-
-    .nav-links li {
-        padding: 15px 0;
-    }
-
-    .nav-button {
-        display: block;
-        margin: 15px auto;
-    }
-
-    .menu-toggle {
-        display: flex; /* Show the hamburger icon on mobile */
-    }
-
-    /* Optional: Animate hamburger to 'X' */
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: rotate(45deg) translate(-7px, -8px);
-    }
-}
 body {
     font-family: 'Oswald', sans-serif;
     background-color: var(--dark-bg);
     color: var(--light-text);
     margin: 0;
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+/* This class will be added by JavaScript to trigger the fade-out */
+body.fade-out {
+    animation: fadeOut 0.4s ease-in-out forwards;
 }
 
 /* General container for content boxes */
@@ -93,14 +40,18 @@ body {
 
 /* Animations */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
 
 /* --- Main Navigation Bar --- */
@@ -108,7 +59,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Reduce the first value (top and bottom padding) */
     padding: 5px 40px; 
     background-color: rgba(18, 18, 18, 0.8);
     backdrop-filter: blur(10px);
@@ -147,51 +97,32 @@ body {
     position: relative;
 }
 
-.nav-links a:hover {
+.nav-links a:not(.nav-button):hover {
     color: var(--primary-red);
     transform: translateY(-2px);
 }
-.six{
-    padding:10px;
-    margin:5px;
-   
-}
-.y{
-    color:var(--primary-red)
-}
-.mix{
-    padding: 1opx;
-    margin: 5px;
-}
-.nav-button {
-    background-color: var(--primary-red);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+.nav-button.box {
     color: var(--light-text) !important;
     text-decoration: none;
-    
-}
-.box{
-    height:20px;
-    width:100px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:1.5em;
-    font-weight:700;
-    padding:10px;
-    margin:5px;
-    border-radius:5px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    height: auto; /* Changed */
+    width: auto; /* Changed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em; /* Adjusted */
+    font-weight: 700;
+    padding: 10px 20px; /* Adjusted */
+    margin: 0; /* Adjusted */
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
     background: linear-gradient(45deg, #e74c3c, #c0392b);
-    text-align:center;
+    text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
 }
-.nav-button:hover {
-    background-color: var(--hover-red);
+
+.nav-button.box:hover {
+    background: linear-gradient(45deg, #c0392b, #e74c3c);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
@@ -221,17 +152,18 @@ body {
     color: #fff;
     background: url('../assets/images/hero-background.jpg') no-repeat center center/cover;
     animation: fadeInUp 1s ease-out forwards;
-    padding-top: 80px; 
+    padding: 80px 20px 0 20px; /* Added padding for mobile */
+    box-sizing: border-box; /* Added for correct padding calculation */
 }
 
 .hero-content h1 {
-    font-size: 3.5em;
+    font-size: 3.5rem;
     margin-bottom: 20px;
     text-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     margin-bottom: 30px;
     max-width: 600px;
     margin-left: auto;
@@ -239,9 +171,8 @@ body {
 }
 
 /* --- Buttons --- */
-.cta-button {
+.cta-button, .green {
     display: inline-block;
-    background-color: var(--primary-red);
     color: #fff;
     padding: 15px 30px;
     text-decoration: none;
@@ -252,41 +183,22 @@ body {
     margin-top: 10px;
     font-size: 1.1em;
 }
-.green{
-    display: inline-block;
-    background:white;
-    color:var(--primary-red);
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    font-size: 1.1em;
+
+.cta-button {
+    background-color: var(--primary-red);
 }
-.green:{
-     background-color: var(--hover-red);
+
+.green {
+    background: white;
+    color: var(--primary-red);
+}
+
+.cta-button:hover, .green:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-.hello {
-    display: inline-block;
-    background-color: var(--primary-red);
-    color: #fff;
-    padding: 15px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
-    font-size: 1.1em;
 }
 .cta-button:hover {
     background-color: var(--hover-red);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* --- Content Sections --- */
@@ -300,7 +212,7 @@ body {
 }
 
 .content-section h2 {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     margin-bottom: 40px;
     color: var(--primary-red);
     text-shadow: 0 2px 5px rgba(0,0,0,0.3);
@@ -311,14 +223,14 @@ body {
     margin: 0 auto;
     text-align: left;
     background-color: var(--box-bg);
-    padding: 30px;
+    padding: 40px; /* Increased padding */
     border-radius: 12px;
     border: 1px solid var(--border-color);
     box-shadow: var(--box-shadow);
 }
 .section-content p {
     margin-bottom: 15px;
-    font-size: 1.05em;
+    font-size: 1.05rem;
     line-height: 1.8;
 }
 
@@ -332,7 +244,7 @@ body {
 }
 
 .sponsors-section h2 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     color: #aaa;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -361,7 +273,7 @@ body {
 .about-layout {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 40px; /* Increased gap */
 }
 .about-text {
     flex: 1.5;
@@ -375,6 +287,7 @@ body {
 .about-image img {
     max-width: 100%;
     border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4); /* Added shadow */
 }
 
 /* --- Contact Section --- */
@@ -414,7 +327,7 @@ body {
 }
 
 .social-icon span {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
@@ -477,6 +390,7 @@ body {
     width: 100%;
     height: 320px;
     object-fit: cover;
+    object-position: top; /* Ensures faces are visible */
 }
 
 .guest-info {
@@ -501,17 +415,17 @@ body {
 
 .guest-info h3, .team-member-card h3 {
     margin: 0 0 8px 0;
-    font-size: 1.6em;
+    font-size: 1.6rem;
     color: var(--light-text);
 }
 
 .guest-info p, .team-member-card p {
-    font-size: 1em;
+    font-size: 1rem;
     color: var(--primary-red);
     margin: 0;
 }
 .team-member-card .description {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #bbb;
     margin-top: 15px;
     line-height: 1.6;
@@ -524,7 +438,7 @@ body {
     gap: 8px;
     text-decoration: none;
     color: #ccc;
-    font-size: 0.9em;
+    font-size: 0.9rem;
     transition: color 0.3s ease;
     margin-top: 10px;
 }
@@ -571,7 +485,7 @@ body {
 .rules-list h3 {
     margin-top: 30px;
     color: var(--primary-red);
-    font-size: 1.8em;
+    font-size: 1.8rem;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -604,17 +518,25 @@ body {
     padding: 20px;
 }
 
-nav {
+.dashboard-image {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    animation: fadeInUp 1s ease-out forwards;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+}
+
+.dashboard-image .container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 20px 50px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgba(30, 30, 30, 0.8);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
+}
+
+.dashboard-image nav {
+    flex-shrink: 0; /* Prevents nav from shrinking */
 }
 
 .form-box, .content-box {
@@ -630,6 +552,7 @@ nav {
 .auth-container {
     max-width: 450px;
     width: 100%;
+    margin-top: 80px; /* Space for fixed nav */
 }
 
 .content-box {
@@ -687,6 +610,26 @@ form p {
     margin-top: 20px;
 }
 
+#logout-button {
+    background-color: var(--primary-red);
+    color: var(--light-text);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+#logout-button:hover {
+    background-color: var(--hover-red);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
 /* --- Registration Form Specific --- */
 .registration-form {
     max-width: 900px;
@@ -707,6 +650,8 @@ form p {
     padding: 25px;
     border: 1px solid var(--border-color);
 }
+
+.payment-column .y { color: var(--primary-red); }
 
 .qr-code-img {
     display: block;
@@ -745,6 +690,28 @@ form p {
 .checkbox-container { display: flex; align-items: flex-start; margin-bottom: 15px; }
 .checkbox-container input { margin-right: 12px; accent-color: var(--primary-red); }
 
+
+/* --- Dashboard Details --- */
+.event-detail-link {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s ease;
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin: -5px -10px;
+}
+
+.event-detail-link:hover {
+    background-color: #3f3f3f;
+    cursor: pointer;
+}
+
+.event-detail .icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
 /* --- Footer --- */
 .site-footer {
     text-align: center;
@@ -753,25 +720,36 @@ form p {
     border-top: 1px solid var(--border-color);
 }
 
-/* ========================================= */
-/* --- RESPONSIVE STYLES --- */
-/* ========================================= */
+/* Custom Font */
+@font-face {
+  font-family: 'Hoshiko Satsuki';
+  src: url('../assets/fonts/Hoshiko Satsuki.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.satsuki {
+  font-family: 'Hoshiko Satsuki', cursive;
+}
+
+/* ================================================= */
+/* --- RESPONSIVE STYLES (Tablets and Mobiles) --- */
+/* ================================================= */
 
 @media (max-width: 992px) {
-    .hero-content h1 { font-size: 3em; }
-    .content-section h2 { font-size: 2.2em; }
+    .hero-content h1 { font-size: 3rem; }
+    .content-section h2 { font-size: 2.2rem; }
     .about-layout { flex-direction: column; }
     .nav-links { gap: 20px; }
 }
 
 @media (max-width: 768px) {
-    /* Hamburger Menu Activation */
+    /* --- Hamburger Menu Activation --- */
     .menu-toggle { display: flex; }
-    .main-nav { padding: 15px 20px; }
+    .main-nav { padding: 10px 20px; }
     .nav-links {
         display: none;
         position: absolute;
-        top: 70px; /* Height of the navbar */
+        top: 60px; /* Adjusted to new navbar height */
         left: 0;
         background-color: var(--box-bg);
         width: 100%;
@@ -779,15 +757,18 @@ form p {
         align-items: center;
         padding: 20px 0;
         border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     .nav-links.active { display: flex; }
     .nav-links li {
         width: 100%;
         text-align: center;
-        padding: 10px 0;
+        padding: 12px 0;
     }
-    .nav-button {
-        width: 0%;
+    .nav-button.box {
+        width: 80%; /* Makes button larger on mobile menu */
+        padding: 12px 20px;
+        margin-top: 10px;
     }
     .menu-toggle.active .bar:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
@@ -799,222 +780,31 @@ form p {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* General Layout */
-    .hero { height: 70vh; }
-    .hero-content h1 { font-size: 2.5em; }
-    .page-header { padding-top: 120px; }
+    /* --- General Layout & Typography --- */
+    .hero { height: 80vh; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1.1rem; }
+    .content-section h2 { font-size: 2rem; }
+    .page-header { padding-top: 100px; }
     .content-section { padding: 60px 5%; }
-    .registration-layout { flex-direction: column; }
+    .section-content { padding: 25px; }
+    .social-icons { gap: 25px; }
+    
+    /* --- Registration Form Stacking --- */
+    .registration-layout { 
+        flex-direction: column; 
+        gap: 30px;
+    }
+
     .content-box, .registration-form {
         margin-top: 120px;
         padding: 25px;
     }
-}
-
-/* Custom Font */
-@font-face {
-  font-family: 'Hoshiko Satsuki';
-  src: url('../assets/fonts/Hoshiko Satsuki.ttf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-.satsuki {
-  font-family: 'Hoshiko Satsuki', cursive;
-}
-.dashboard-image {
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    animation: fadeInUp 1s ease-out forwards;
-    /* Flexbox styles to center the content */
-    display: flex;
-    flex-direction: column;
-}
-
-/* New rule to make the container fill space and center its content */
-.dashboard-image .container {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.dashboard-image .status-box {
-    background-color: rgba(30, 30, 30, 0.85);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: var(--box-shadow);
-    border: 1px solid var(--border-color);
-    text-align: center;
-}
-#logout-button {
-    background-color: var(--primary-red); /* Uses your theme's main red color */
-    color: var(--light-text);             /* Uses your theme's light text color */
-    border: none;                         /* Removes the default browser border */
-    padding: 10px 25px;                   /* Gives the button some comfortable spacing */
-    border-radius: 8px;                   /* Rounds the corners */
-    font-size: 16px;                      /* Sets a clear, readable font size */
-    font-weight: 500;
-    font-family: 'Oswald', sans-serif;    /* Matches the professional font used elsewhere */
-    cursor: pointer;                      /* Changes the cursor to a hand on hover */
-    transition: all 0.3s ease;            /* Creates a smooth transition for hover effects */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);/* Adds a subtle shadow for depth */
-}
-
-/* This style applies when you hover your mouse over the button */
-#logout-button:hover {
-    background-color: var(--hover-red);  /* Darkens the button slightly */
-    transform: translateY(-2px);         /* Lifts the button up a little */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.4);/* Makes the shadow more pronounced */
-}
-/* --- Styling for the clickable venue link --- */
-/* --- Styling for the clickable venue link --- */
-/* --- Styling for the clickable venue link & icons --- */
-.event-detail-link {
-    text-decoration: none; /* Removes the default underline from the link */
-    color: inherit; /* Ensures the text color matches the other details */
-    transition: background-color 0.3s ease; /* Smoother transition for the background only */
-    border-radius: 6px;
-    padding: 5px 10px;
-    margin: -5px -10px; /* Offsets padding to maintain alignment */
-}
-
-.event-detail-link:hover {
-    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
-    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
-}
-
-/* This new rule specifically targets the icons inside the event details */
-.event-detail .icon {
-    width: 22px;  /* Sets a specific, smaller size */
-    height: 22px; /* Sets a specific, smaller size */
-    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
-}
-
-/* --- Styling for the clickable venue link & icons --- */
-.event-detail-link {
-    text-decoration: none; /* Removes the default underline from the link */
-    color: inherit; /* Ensures the text color matches the other details */
-    transition: background-color 0.3s ease; /* Smoother transition for the background only */
-    border-radius: 6px;
-    padding: 5px 10px;
-    margin: -5px -10px; /* Offsets padding to maintain alignment */
-}
-
-.event-detail-link:hover {
-    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
-    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
-}
-
-/* This new rule specifically targets the icons inside the event details */
-.event-detail .icon {
-    width: 22px;  /* Sets a specific, smaller size */
-    height: 22px; /* Sets a specific, smaller size */
-    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
-}
-
-/* --- Global Page Transition Animations --- */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-/* Apply fade-in to the body by default */
-body {
-    animation: fadeIn 0.4s ease-in-out forwards;
-}
-
-/* This class will be added by JavaScript to trigger the fade-out */
-body.fade-out {
-    animation: fadeOut 0.4s ease-in-out forwards;
-}
-
-/* --- Styling for the clickable venue link & icons --- */
-.event-detail-link {
-    text-decoration: none; /* Removes the default underline from the link */
-    color: inherit; /* Ensures the text color matches the other details */
-    transition: background-color 0.3s ease; /* Smoother transition for the background only */
-    border-radius: 6px;
-    padding: 5px 10px;
-    margin: -5px -10px; /* Offsets padding to maintain alignment */
-}
-
-.event-detail-link:hover {
-    background-color: #3f3f3f; /* Adds a subtle highlight on hover */
-    cursor: pointer;           /* Ensures the cursor turns into a hand pointer */
-}
-
-/* This new rule specifically targets the icons inside the event details */
-.event-detail .icon {
-    width: 22px;  /* Sets a specific, smaller size */
-    height: 22px; /* Sets a specific, smaller size */
-    flex-shrink: 0; /* Prevents the icon from shrinking if text wraps */
-}
-
-/* --- Global Page Transition Animations --- */
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px); /* Start slightly lower */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    
+    /* --- Dashboard nav button --- */
+    .dashboard-image nav h1 { font-size: 1.5rem; }
+    #logout-button, .dashboard-image nav .nav-button {
+        padding: 8px 15px;
+        font-size: 14px;
     }
 }
-
-@keyframes slideOutDown {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(40px); /* End slightly lower */
-    }
-}
-
-/* Apply the slide-in animation to the body by default */
-body {
-    animation: slideInUp 0.5s ease-out forwards;
-}
-
-/* This class will be added by JavaScript to trigger the slide-out */
-body.page-exit {
-    animation: slideOutDown 0.5s ease-out forwards;
-}
-
-.lika{
-    width:500px;
-
-}
-/* --- Default (Mobile) Styles --- */
-.container {
-  width: 100%;
-  padding: 10px;
-}
-
-.box {
-  width: 100%; /* Boxes stack on top of each other on mobile */
-  margin-bottom: 10px;
-}
-
-/* --- Tablet and Larger Styles --- */
-/* This applies only when the screen is 768px or wider */
-@media (min-width: 768px) {
-  .container {
-    display: flex; /* Use Flexbox for columns */
-    justify-content: space-between;
-  }
-
-  .box {
-    width: 48%; /* Two boxes side-by-side */
-    margin-bottom: 0;
-  }
-}
-
