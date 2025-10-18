@@ -932,4 +932,29 @@ body.page-exit {
 
 .lika{
     width:500px;
+
+}
+/* --- Default (Mobile) Styles --- */
+.container {
+  width: 100%;
+  padding: 10px;
+}
+
+.box {
+  width: 100%; /* Boxes stack on top of each other on mobile */
+  margin-bottom: 10px;
+}
+
+/* --- Tablet and Larger Styles --- */
+/* This applies only when the screen is 768px or wider */
+@media (min-width: 768px) {
+  .container {
+    display: flex; /* Use Flexbox for columns */
+    justify-content: space-between;
+  }
+
+  .box {
+    width: 48%; /* Two boxes side-by-side */
+    margin-bottom: 0;
+  }
 }
