@@ -9,7 +9,18 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // --- 2. CORE FUNCTIONS ---
+// Select the mobile menu button and the navigation links
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
 
+// Add a click event listener to the menu button
+menuToggle.addEventListener('click', () => {
+    // Toggle the 'active' class on the navigation links to show/hide them
+    navLinks.classList.toggle('active');
+
+    // Optional: Toggle an 'active' class on the menu icon itself for animation (e.g., to turn it into an 'X')
+    menuToggle.classList.toggle('active');
+});
 /**
  * Checks the current user's session status.
  * Redirects user based on their login status and current page.
@@ -270,4 +281,5 @@ document.querySelectorAll('a:not([target="_blank"]):not([href^="#"])').forEach(l
         checkUser();
     }
 });
+
 
